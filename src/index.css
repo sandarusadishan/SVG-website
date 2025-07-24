@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+/* Add this to your main CSS file (e.g., src/index.css) */
+/* Add or replace these styles in src/index.css */
+/* Add this to src/index.css if you haven't already */
+
+/* Tailwind directives */
+
+/* Custom glass card effect for services */
+.glass-card {
+  background: rgba(41, 51, 78, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Gradient text utility */
+.gradient-text-primary {
+  background: linear-gradient(to right, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-emphasis-color: transparent;
+}
+
+/* Helper text colors */
+.text-primary { color: #60a5fa; }
+.text-muted-foreground { color: #94a3b8; }
+
+
+/* Import Leaflet's default styles */
+@import "leaflet/dist/leaflet.css";
+
+/* Style for the dark mode map */
+.leaflet-container-dark {
+    filter: grayscale(1) invert(1) brightness(0.9) contrast(0.9);
+}
+
+/* Custom popup styling for dark theme */
+.custom-popup .leaflet-popup-content-wrapper {
+    background: #1f2937; /* bg-gray-800 */
+    color: #d1d5db; /* text-gray-300 */
+    border: 1px solid #374151; /* border-gray-700 */
+    border-radius: 12px;
+}
+
+.custom-popup .leaflet-popup-tip {
+    background: #1f2937;
+}
+
+.custom-popup .leaflet-popup-close-button {
+    color: #d1d5db !important;
+}
