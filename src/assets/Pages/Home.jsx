@@ -271,7 +271,7 @@ const BusySoftwareSection = () => {
     const features = [
         "Comprehensive Financial Accounting",
         "Multi-Location Inventory Management",
-        "GST & VAT Reports",
+        "VAT Reports",
         "Powerful Reporting & MIS",
         "Mobile App for Business on-the-go"
     ];
@@ -285,7 +285,7 @@ const BusySoftwareSection = () => {
                         <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">The Complete Business Management Solution</h2>
                         {/* MODIFIED: Updated description to include server information */}
                         <p className="text-xl text-slate-600 mb-8 leading-relaxed">
-                            BUSY is our flagship product, a powerful and integrated business accounting software for MSMEs. With over 3,000,000 users, it is a leading solution deployable on premier cloud platforms like <b className="text-slate-700">AWS, Google Cloud, and Azure,</b> or on your own <b className="text-slate-700">private open servers.</b>
+                            BUSY is our flagship product, a powerful and integrated business accounting software for MSMEs. With over 3,000,000 users, it is a leading solution deployable on premier cloud platforms like <b className="text-blue-700">AWS, Google Cloud, and Azure,</b> or on your own <b className="text-blue-700">private open servers.</b>
                         </p>
                         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ staggerChildren: 0.15 }} className="space-y-4 mb-10">
                             {features.map(feature => (
