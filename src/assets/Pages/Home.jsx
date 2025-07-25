@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useInView, animate, useMotionValue, useTransform } from "framer-motion";
-import { 
-    Mail, 
-    Phone, 
-    MapPin, 
-    Send, 
-    Loader, 
-    Check, 
+import {
+    Mail,
+    Phone,
+    MapPin,
+    Send,
+    Loader,
+    Check,
     AlertTriangle,
     ChevronDown,
     ArrowRight,
@@ -33,7 +33,8 @@ import {
     ConciergeBell,
     Banknote,
     GraduationCap,
-    HeartPulse
+    HeartPulse,
+    Download // <-- ADDED THIS ICON FOR THE DOWNLOAD LINK
 } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
@@ -172,10 +173,10 @@ const NavBar = () => {
                     {navLinks.map((item) => (
                         <a key={item.name} href={item.href} className="text-slate-300 hover:text-blue-400 transition-colors text-lg font-medium">{item.name}</a>
                     ))}
-                    <a 
+                    <a
                         href="https://wa.me/+94714318753" // Change to your company WhatsApp number
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-green-400 hover:text-green-300 transition-colors"
                         title="Chat on WhatsApp"
                     >
@@ -233,14 +234,14 @@ const HeroSection = () => {
                 {/* === MODIFIED BUTTON SECTION === */}
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="flex flex-col sm:flex-row gap-6 justify-center">
                     {/* 1. The NEW BUSY Logo Button */}
-                    <a 
+                    <a
                         href="#product" // <-- Corrected to href. Change to your product page.
                         className="bg-gradient-to-r from--600 to--700 text- px-8 py-3 rounded-10 text-lg font-semibold hover:from--700 hover:to-slate-800 transition-all duration-300 shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1 inline-flex items-center justify-center"
                     >
-                        <img 
+                        <img
                             src="/public/background/busy logo.jpg" // <-- Place your logo in public/logos/
-                            alt="BUSY Software Logo" 
-                            className="w-30 h-10 mr-0.5" 
+                            alt="BUSY Software Logo"
+                            className="w-30 h-10 mr-0.5"
                         />
                         
                     </a>
@@ -510,7 +511,6 @@ const SuccessModal = ({ onClose }) => {
 
 const ContactSection = () => {
     const [status, setStatus] = useState({ submitting: false, error: false, message: '' });
-    // CHANGED: State to control the new success modal visibility
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const handleFormSubmit = (event) => {
@@ -518,22 +518,24 @@ const ContactSection = () => {
         setStatus({ submitting: true, error: false, message: '' });
 
         const form = event.target;
+        // MODIFIED: Changed `contact` to `phone` to be more specific
         const templateParams = {
             name: form.name.value,
             email: form.email.value,
             message: form.message.value,
+            phone: form.phone.value || 'Not provided', // Captures the new phone field
         };
 
-        const serviceID = 'service_760nrad';
-        const templateIDToCompany = 'template_qlbvzum';
-        const templateIDToCustomer = 'template_87fcm78';
-        const publicKey = 'p6uoW575AKT5hjL4J';
+        const serviceID = 'service_gamwh5i';
+        const templateIDToCompany = 'template_srzk65p';
+        const templateIDToCustomer = 'template_r0mj5x6';
+        const publicKey = 'D84ebfog3xQ0S44I8';
 
         emailjs.send(serviceID, templateIDToCompany, templateParams, publicKey)
             .then(() => emailjs.send(serviceID, templateIDToCustomer, templateParams, publicKey))
             .then(() => {
                 setStatus({ submitting: false, error: false, message: '' });
-                setShowSuccessModal(true); // Show the success modal
+                setShowSuccessModal(true);
                 form.reset();
             })
             .catch((err) => {
@@ -582,12 +584,21 @@ const ContactSection = () => {
                                     <input name="email" type="email" placeholder=" " required className="peer w-full bg-white text-slate-900 p-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" />
                                     <label className="absolute left-4 top-4 text-slate-500 pointer-events-none transition-all duration-300 peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:bg-slate-50 peer-focus:px-1 peer-[:not(placeholder-shown)]:-top-2.5 peer-[:not(placeholder-shown)]:left-3 peer-[:not(placeholder-shown)]:text-xs peer-[:not(placeholder-shown)]:bg-slate-50 peer-[:not(placeholder-shown)]:px-1">Your Email</label>
                                 </div>
+                                
+                                {/* --- START: NEW PHONE NUMBER FIELD --- */}
+                                <div className="relative">
+                                    <input name="phone" type="tel" placeholder=" " className="peer w-full bg-white text-slate-900 p-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all" />
+                                    <label className="absolute left-4 top-4 text-slate-500 pointer-events-none transition-all duration-300 peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:bg-slate-50 peer-focus:px-1 peer-[:not(placeholder-shown)]:-top-2.5 peer-[:not(placeholder-shown)]:left-3 peer-[:not(placeholder-shown)]:text-xs peer-[:not(placeholder-shown)]:bg-slate-50 peer-[:not(placeholder-shown)]:px-1">Your Phone (Optional)</label>
+                                </div>
+                                {/* --- END: NEW PHONE NUMBER FIELD --- */}
+
                                 <div className="relative">
                                     <textarea name="message" placeholder=" " rows="5" required className="peer w-full bg-white text-slate-900 p-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"></textarea>
                                     <label className="absolute left-4 top-4 text-slate-500 pointer-events-none transition-all duration-300 peer-focus:-top-2.5 peer-focus:left-3 peer-focus:text-xs peer-focus:bg-slate-50 peer-focus:px-1 peer-[:not(placeholder-shown)]:-top-2.5 peer-[:not(placeholder-shown)]:left-3 peer-[:not(placeholder-shown)]:text-xs peer-[:not(placeholder-shown)]:bg-slate-50 peer-[:not(placeholder-shown)]:px-1">Your Message</label>
                                 </div>
-                                <button 
-                                    type="submit" 
+                               
+                                <button
+                                    type="submit"
                                     disabled={status.submitting}
                                     className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 shadow-lg hover:shadow-blue-500/40 transform hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
@@ -605,8 +616,8 @@ const ContactSection = () => {
 
                         <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="space-y-8">
                             {contactInfo.map((info) => (
-                                <motion.div 
-                                    key={info.title} 
+                                <motion.div
+                                    key={info.title}
                                     className="flex items-start gap-5"
                                     whileHover={{ scale: 1.03 }}
                                     transition={{ type: "spring", stiffness: 300 }}
@@ -641,7 +652,6 @@ const ContactSection = () => {
         </>
     );
 };
-
 const AgentsSection = () => {
     const [activeAgent, setActiveAgent] = useState(null);
 
@@ -752,6 +762,8 @@ const AgentsSection = () => {
     );
 };
 
+
+
 const Footer = () => {
     const socialLinks = [
         { name: 'WhatsApp', icon: <MessageSquare />, href: 'https://wa.me/94700000000' },
@@ -779,7 +791,8 @@ const Footer = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
+                    
+                    <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-4 gap-8">
                         <div>
                             <h4 className="text-white font-bold text-lg mb-6">Explore</h4>
                             <div className="space-y-3">
@@ -796,7 +809,7 @@ const Footer = () => {
                                 ))}
                             </div>
                         </div>
-                         <div>
+                        <div>
                             <h4 className="text-white font-bold text-lg mb-6">Legal</h4>
                             <div className="space-y-3">
                                 {["Privacy Policy", "Terms of Service"].map((link) => (
@@ -804,6 +817,22 @@ const Footer = () => {
                                 ))}
                             </div>
                         </div>
+
+                        {/* Download Section */}
+                        <div>
+                            <h4 className="text-white font-bold text-lg mb-6">Downloads</h4>
+                            <div className="space-y-3">
+                                <a
+                                    href="/public/background/Busy21-6.2.exe" // Link to your file in the 'public' folder
+                                    download="SoftVision_App.zip" // Suggests a filename to the user
+                                    className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors"
+                                >
+                                    <Download className="w-4 h-4" />
+                                    <span>Busy21 Setup 6.2</span>
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-500">
@@ -813,6 +842,8 @@ const Footer = () => {
         </footer>
     );
 };
+
+
 
 // --- Main App Component ---
 const App = () => {
