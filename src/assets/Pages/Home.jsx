@@ -679,7 +679,7 @@ const AgentsSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7 }}
-                    className="text-center mb-16"
+                    className="text-center mb-10"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-teal-300 to-blue-400 mb-4">
                         Our Sales and Service Locations
@@ -691,26 +691,26 @@ const AgentsSection = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center min-h-[500px]">
                     <motion.div
-                        className="relative h-[500px] lg:h-[700] w-full lg:col-span-2"
+                        className="relative h-[500px] lg:h-[650px] w-full lg:col-span-2"
                         initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        whileInView={{ opacity: 4, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
                     >
-                            <motion.div className="relative h-[800px] lg:h-[1100px] w-full lg:col-span-2">
+                            <motion.div className="relative h-[40px] lg:h-[1000px] w-full lg:col-span-1">
                             <img src="/public/background/new.png" alt="Map of Sri Lanka" className="inset-x-20 relative -top-50 w-full h-full object-contain opacity-30 transform -translate-y-10" />
                             </motion.div>
                         {agents.map((agent) => (
                             <div
                                 key={agent.id}
-                                className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                                className="absolute transform -translate-x-1/3 -translate-y-2/2 cursor-pointer"
                                 style={{ top: agent.mapPosition.top, left: agent.mapPosition.left }}
                                 onMouseEnter={() => setActiveAgent(agent)}
                             >
                                 <motion.div
                                     className="w-3 h-3 bg-blue-500 rounded-full border-2 border-white shadow-lg"
                                     animate={{ scale: activeAgent?.id === agent.id ? 1.8 : 1 }}
-                                    transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+                                    transition={{ type: 'spring', stiffness: 30, damping: 15 }}
                                 >
                                     {activeAgent?.id === agent.id && (
                                         <div className="absolute w-5 h-5 bg-blue-500 rounded-full animate-ping"></div>
