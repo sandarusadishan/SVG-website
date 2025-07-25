@@ -227,15 +227,30 @@ const HeroSection = () => {
                     <GradientText>Innovating for a Digital World</GradientText>
                 </motion.h1>
                 <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }} className="text-xl lg:text-2xl text-slate-300 max-w-3xl mx-auto mb-10">
-                    From our flagship accounting software <span className="text-blue-400 font-semibold">BUSY</span> to custom enterprise solutions, we architect the future of business technology.
+                    From our flagship <span className="text-blue-400 font-semibold">BUSY</span> accounting software to custom enterprise solutions, we architect the future of business technology.
                 </motion.p>
+                
+                {/* === MODIFIED BUTTON SECTION === */}
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="flex flex-col sm:flex-row gap-6 justify-center">
-                    <a href="#product" className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-8 py-3 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-indigo-800 transition-all duration-300 shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1 inline-flex items-center justify-center">Explore BUSY <ArrowRight className="inline-block ml-2 w-5 h-5" /></a>
-                    <a href="#contact" className="flex items-center justify-center bg-slate-800/50 border border-slate-700 text-slate-300 px-8 py-3 rounded-full text-lg font-semibold hover:bg-slate-800/80 hover:text-white transition-all duration-300 transform hover:-translate-y-1">Contact Sales</a>
+                    {/* 1. The NEW BUSY Logo Button */}
+                    <a 
+                        href="#product" // <-- Corrected to href. Change to your product page.
+                        className="bg-gradient-to-r from--600 to--700 text- px-8 py-3 rounded-10 text-lg font-semibold hover:from--700 hover:to-slate-800 transition-all duration-300 shadow-xl hover:shadow-blue-500/40 transform hover:-translate-y-1 inline-flex items-center justify-center"
+                    >
+                        <img 
+                            src="/public/background/busy logo.jpg" // <-- Place your logo in public/logos/
+                            alt="BUSY Software Logo" 
+                            className="w-30 h-10 mr-0.5" 
+                        />
+                        
+                    </a>
+                    
+                    {/* 2. Contact Sales Button (Unchanged) */}
+                    <a href="#contact" className="flex items-center justify-center bg-slate-800/100 border border-blue-700 text-slate-300 px-8 py-3 rounded-full text-lg font-semibold hover:bg-slate-800/80 hover:text-white transition-all duration-300 transform hover:-translate-y-1">Contact Sales</a>
                 </motion.div>
             </div>
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
-                <ChevronDown className="w-10 h-10 text-blue-400/70" />
+                <ChevronDown className="w-4 h-2 text-blue-400/100" />
             </div>
         </section>
     );
@@ -307,7 +322,7 @@ const BusySoftwareSection = () => {
                                     repeat: Infinity,
                                 }}
                             >
-                                <img src="/background/busy.jpeg" alt="BUSY Software Logo" className="w-64 h-auto" />
+                                <img src="/background/busy logo.jpg" alt="BUSY Software Logo" className="w-95 h-30" />
                             </motion.div>
                         </div>
                     </motion.div>
